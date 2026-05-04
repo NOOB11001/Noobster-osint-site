@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSINT Premium | Mr Noobster</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --primary: #00d4ff; --bg: #0a0b10; --card-bg: rgba(255, 255, 255, 0.05); }
+        body { font-family: 'Poppins', sans-serif; background: radial-gradient(circle at top right, #1a1b25, var(--bg)); color: #fff; margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .container { width: 90%; max-width: 600px; background: var(--card-bg); backdrop-filter: blur(15px); padding: 40px; border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.1); text-align: center; box-shadow: 0 25px 50px rgba(0,0,0,0.5); }
+        h1 { font-size: 2rem; background: linear-gradient(to right, #fff, var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        select, input { width: 100%; padding: 15px; background: rgba(0, 0, 0, 0.3); border: 1px solid #333; border-radius: 12px; color: white; margin-bottom: 15px; box-sizing: border-box; }
+        button { width: 100%; padding: 15px; background: var(--primary); color: #000; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; transition: 0.4s; }
+        button:hover { box-shadow: 0 0 20px var(--primary); transform: scale(1.02); }
+        .result-box { margin-top: 30px; text-align: left; background: rgba(0, 0, 0, 0.4); padding: 20px; border-radius: 15px; border-left: 4px solid var(--primary); }
+        pre { white-space: pre-wrap; word-wrap: break-word; color: #00ffcc; font-size: 14px; }
+        .tg-float { position: fixed; bottom: 30px; right: 30px; background: #0088cc; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 30px; text-decoration: none; box-shadow: 0 10px 20px rgba(0,0,0,0.3); z-index: 1000; transition: 0.3s; }
+        .tg-float:hover { transform: rotate(15deg) scale(1.1); }
+        .footer-text { margin-top: 20px; font-size: 0.8rem; color: #888; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-user-secret"></i> NOOBSTER OSINT</h1>
+        <form action="/lookup" method="post">
+            <select name="type">
+                <option value="vehicle">🚗 Vehicle RC Lookup</option>
+                <option value="tg_id">🆔 Telegram ID Lookup</option>
+                <option value="phone">📞 Phone Number Search</option>
+            </select>
+            <input type="text" name="value" placeholder="Enter details..." required>
+            <button type="submit">SEARCH DATABASE</button>
+        </form>
+        {% if result %}
+        <div class="result-box">
+            <pre>{{ result | tojson(indent=4) }}</pre>
+        </div>
+        {% endif %}
+        <div class="footer-text">Developed by <span>{{ dev.developer }}</span></div>
+    </div>
+    <a href="https://t.me/Noob11001" class="tg-float" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+</body>
+</html>
